@@ -14,11 +14,13 @@ bids_sub=sub-$sub
 
 #organizing brainlife input to "bids" structure
 mkdir -p ${bids_sub}/T1w/
-mv output ${bids_sub}/T1w/${bids_sub}
+mv $fs ${bids_sub}/T1w/${bids_sub}
 
 singularity exec docker://soichih/hcppipeline \
-    python /run.py --n_cpus 8 --stages $stage \
-    --license_key "$FREESURFER_LICENSE" input ./ participant
+    python ./run.py input ./ participant \
+        --n_cpus 8 --stages $stage \
+        --license_key "$FREESURFER_LICENSE" \
+        --participant_label $sub
 
 rtn=$?
 
