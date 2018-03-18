@@ -5,6 +5,7 @@
 stage=PostFreeSurfer
 
 fs=`jq -r '.freesurfer' config.json`
+predat=`jq -r '.hcp_freesurferpre' config.json`
 
 sub=$(jq -r "._inputs[0].meta.subject" config.json | tr -d "_")
 if [[ -z $sub || $sub == null ]]; then
@@ -13,7 +14,7 @@ fi
 bids_sub=sub-$sub
 
 #organizing brainlife input to "bids" structure
-mkdir -p ${bids_sub}/T1w/
+mv $predat/output $bids_sub
 mv $fs ${bids_sub}/T1w/${bids_sub}
 
 singularity exec docker://soichih/hcppipeline \
