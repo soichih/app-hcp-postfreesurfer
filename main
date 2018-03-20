@@ -14,9 +14,10 @@ fi
 bids_sub=sub-$sub
 
 #organizing brainlife input to "bids" structure
-echo $predat/output
+echo predat $predat/output
+ls $predat
 ls $predat/output
-echo fs
+echo fs $fs
 ls $fs
 
 echo copying
