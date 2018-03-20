@@ -14,8 +14,12 @@ fi
 bids_sub=sub-$sub
 
 #organizing brainlife input to "bids" structure
+ls $predat/output
+ls $fs
+
 cp -r $predat/output $bids_sub
 cp -r $fs ${bids_sub}/T1w/${bids_sub}
+
 ls $bids_sub
 ls ${bids_sub}/T1w
 ls ${bids_sub}/T1w/${bids_sub}
@@ -29,8 +33,8 @@ singularity exec docker://soichih/hcppipeline \
 rtn=$?
 
 #remove FS data
-rm -rf ${bids_sub}/T1w/${bids_sub}
+#rm -rf ${bids_sub}/T1w/${bids_sub}
 #relocate
-mv ${bids_sub} output
+#mv ${bids_sub} output
 
 exit $rtn
