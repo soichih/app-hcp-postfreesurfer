@@ -14,22 +14,8 @@ fi
 bids_sub=sub-$sub
 
 #organizing brainlife input to "bids" structure
-echo predat $predat/output
-ls $predat
-ls $predat/output
-echo fs $fs
-ls $fs
-
-echo copying
 cp -r $predat/output $bids_sub
 cp -r $fs ${bids_sub}/T1w/${bids_sub}
-
-echo $bids_sub
-ls $bids_sub
-echo $bids_sub/T1w
-ls ${bids_sub}/T1w
-echo ${bids_sub}/T1w/${bids_sub}
-ls ${bids_sub}/T1w/${bids_sub}
 
 singularity exec docker://soichih/hcppipeline \
     python ./run.py input ./ participant \
