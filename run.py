@@ -218,6 +218,9 @@ if set(args.stages).difference(["FreeSurfer","PostFreeSurfer"]):
     parse_inputs = True
     run("bids-validator " + args.bids_dir)
     layout = BIDSLayout(args.bids_dir)
+else:
+    bolds = []
+    dwis = []
 
 # running participant level
 if args.analysis_level == "participant":
