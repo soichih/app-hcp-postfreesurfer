@@ -17,7 +17,7 @@ bids_sub=sub-$sub
 cp -r $predat/output $bids_sub
 cp -r $fs ${bids_sub}/T1w/${bids_sub}
 
-singularity exec -e docker://soichih/hcppipeline \
+singularity exec -e docker://brainlife/hcppipelines:0.1 \
     python ./run.py input ./ participant \
         --n_cpus 8 --stages $stage \
         --license_key "$FREESURFER_LICENSE" \
