@@ -14,7 +14,7 @@ fi
 bids_sub=sub-$sub
 
 #organizing brainlife input to "bids" structure
-cp -r $predat/output $bids_sub
+cp -r $predat $bids_sub
 cp -r $fs ${bids_sub}/T1w/${bids_sub}
 
 singularity exec -e docker://brainlife/hcppipeline:0.1 \
