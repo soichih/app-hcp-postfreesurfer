@@ -2,6 +2,9 @@
 #PBS -l nodes=1:ppn=8,walltime=24:00:00
 #PBS -N app-bids-hcppipeline-postFS
 
+set -e
+set -x
+
 stage=PostFreeSurfer
 
 fs=`jq -r '.freesurfer' config.json`
@@ -16,18 +19,13 @@ bids_sub=sub-$sub
 #organizing brainlife input to "bids" structure
 cp -r $predat $bids_sub
 cp -r $fs ${bids_sub}/T1w/${bids_sub}
+chmod -R +w ${bids_sub}/T1w/${bids_sub}
 
-singularity exec -e docker://brainlife/hcppipeline:0.1 \
-    python ./run.py input ./ participant \
+singularity exec -e docker://brainlife/hcppipeline:0.1 ./run.py input ./ participant \
         --n_cpus 8 --stages $stage \
         --license_key "$FREESURFER_LICENSE" \
         --participant_label $sub
 
-rtn=$?
-
-#remove FS data
 rm -rf ${bids_sub}/T1w/${bids_sub}
-#relocate
-mv ${bids_sub} output
 
-exit $rtn
+mv ${bids_sub} output

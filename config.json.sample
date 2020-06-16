@@ -1,3 +1,4 @@
 {
-    "freesurfer": "/mnt/scratch/testdata/IXI002/freesurfer_5a389b2db66eef1a5e122af5"
+    "freesurfer": "testdata/freesurfer/output",
+    "hcp_freesurferpre": "testdata/freesurferpre/output"
 }
